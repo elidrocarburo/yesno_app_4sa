@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yesno_app_4sa/presentation/widgets/chat/his_message_bubble.dart';
+import 'package:yesno_app_4sa/presentation/widgets/chat/my_message_bubble.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -13,7 +15,7 @@ class ChatScreen extends StatelessWidget {
                 backgroundImage: NetworkImage('https://i.pinimg.com/736x/d5/86/38/d58638349355821859c48eb74fcec469.jpg'),
               ),
             ), 
-            title: Text('kamui narushi in your area'),
+            title: Text('el que me debe dinero'),
             centerTitle: false,
         ),
         body: _ChatView(), // va a ser un widget privado
@@ -34,12 +36,14 @@ class _ChatView extends StatelessWidget {
                     child: ListView.builder(
                     itemCount: 100,
                     itemBuilder:(context, index) {
-                      return Text('Indice: $index');
+                      return (index % 2 == 0)
+                      ? const HisMessageBubble()
+                      : const MyMessageBubble();
                     },) //tener lista de elementos que se van a construir apenas/ya hayan/estén en pantalla, los demás elementos desaparecen
                 ),
         
         
-                Text('idk')
+                Text('(´･ω･`)?')
             ],
         ),
       ),
