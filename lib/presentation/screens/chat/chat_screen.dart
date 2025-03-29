@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yesno_app_4sa/presentation/widgets/chat/his_message_bubble.dart';
 import 'package:yesno_app_4sa/presentation/widgets/chat/my_message_bubble.dart';
+import 'package:yesno_app_4sa/presentation/widgets/shared/message_field_box.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -42,8 +43,8 @@ class _ChatView extends StatelessWidget {
                     },) //tener lista de elementos que se van a construir apenas/ya hayan/estén en pantalla, los demás elementos desaparecen
                 ),
         
-        
-                Text('(´･ω･`)?')
+                // caja de texto
+                MessageFieldBox(),
             ],
         ),
       ),

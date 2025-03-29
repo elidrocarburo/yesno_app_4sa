@@ -17,7 +17,7 @@ class HisMessageBubble extends StatelessWidget {
             borderRadius: BorderRadius.circular(20)
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             child: Text('Hola mundo', 
             style: TextStyle(color: Colors.white),),
           ),
