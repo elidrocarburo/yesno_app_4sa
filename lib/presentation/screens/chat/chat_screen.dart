@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yesno_app_4sa/presentation/providers/chat_provider.dart';
 import 'package:yesno_app_4sa/presentation/widgets/chat/his_message_bubble.dart';
 import 'package:yesno_app_4sa/presentation/widgets/chat/my_message_bubble.dart';
 import 'package:yesno_app_4sa/presentation/widgets/shared/message_field_box.dart';
@@ -28,6 +30,9 @@ class _ChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Le pide que esté pendiente de cambios
+    final chatProvider = context.watch<ChatProvider>();
+    
     return SafeArea( //sirve para acomodar elementos de la app que puedan interferir con partes del sistema operativo
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -35,7 +40,7 @@ class _ChatView extends StatelessWidget {
             children: [
                 Expanded( //listview: lista que permite scroll de widgets que se alinean de forma vertical
                     child: ListView.builder(
-                    itemCount: 100,
+                    itemCount: chatProvider.messageList.length,
                     itemBuilder:(context, index) {
                       return (index % 2 == 0)
                       ? const HisMessageBubble()
