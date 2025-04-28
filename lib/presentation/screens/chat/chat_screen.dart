@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yesno_app_4sa/domain/entities/message.dart';
 import 'package:yesno_app_4sa/presentation/providers/chat_provider.dart';
 import 'package:yesno_app_4sa/presentation/widgets/chat/his_message_bubble.dart';
 import 'package:yesno_app_4sa/presentation/widgets/chat/my_message_bubble.dart';
@@ -42,9 +43,14 @@ class _ChatView extends StatelessWidget {
                     child: ListView.builder(
                     itemCount: chatProvider.messageList.length,
                     itemBuilder:(context, index) {
-                      return (index % 2 == 0)
+                      //instancia que sabrá de quién es el mensaje
+                      final message = chatProvider.messageList[index];
+                      //si el residuo es 0, es su mensaje, si no, es 0 es mío
+                      //más fácil, si es par es su mensaje, si no, es mío
+                      //return (index % 2 == 0)
+                      return (message.fromWho == FromWho.his)
                       ? const HisMessageBubble()
-                      : const MyMessageBubble();
+                      : MyMessageBubble(message: message);
                     },) //tener lista de elementos que se van a construir apenas/ya hayan/estén en pantalla, los demás elementos desaparecen
                 ),
         

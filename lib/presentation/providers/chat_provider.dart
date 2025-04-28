@@ -7,4 +7,14 @@ class ChatProvider extends ChangeNotifier {
     Message(text: "Dame dinero", fromWho: FromWho.his),
 
   ];
+
+  //evaluar algo que se envíe o no
+  //async: asíncrono
+  Future<void> sendMessage(String text) async {
+    final newMessage = Message(text: text, fromWho: FromWho.me);
+    //agregar un nuevo mensaje a la lista
+    messageList.add(newMessage);
+    //notifica a provider que algo cambió
+    notifyListeners();
+  }
 }
