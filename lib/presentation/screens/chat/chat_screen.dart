@@ -33,6 +33,7 @@ class _ChatView extends StatelessWidget {
   Widget build(BuildContext context) {
     //Le pide que esté pendiente de cambios
     final chatProvider = context.watch<ChatProvider>();
+
     
     return SafeArea( //sirve para acomodar elementos de la app que puedan interferir con partes del sistema operativo
       child: Padding(
@@ -41,10 +42,13 @@ class _ChatView extends StatelessWidget {
             children: [
                 Expanded( //listview: lista que permite scroll de widgets que se alinean de forma vertical
                     child: ListView.builder(
+                      //enlaza el controlador creado en chat provider
+                    controller: chatProvider.chatScrollController,
                     itemCount: chatProvider.messageList.length,
                     itemBuilder:(context, index) {
                       //instancia que sabrá de quién es el mensaje
                       final message = chatProvider.messageList[index];
+                      print('Cantidad de mensajes: $message');
                       //si el residuo es 0, es su mensaje, si no, es 0 es mío
                       //más fácil, si es par es su mensaje, si no, es mío
                       //return (index % 2 == 0)
@@ -55,7 +59,9 @@ class _ChatView extends StatelessWidget {
                 ),
         
                 // caja de texto
-                MessageFieldBox(),
+                MessageFieldBox(
+                  onValue: chatProvider.sendMessage,
+                  ),
             ],
         ),
       ),
