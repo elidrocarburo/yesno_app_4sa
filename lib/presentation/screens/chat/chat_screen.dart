@@ -48,12 +48,12 @@ class _ChatView extends StatelessWidget {
                     itemBuilder:(context, index) {
                       //instancia que sabrá de quién es el mensaje
                       final message = chatProvider.messageList[index];
-                      print('Cantidad de mensajes: $message');
+                      //print('Cantidad de mensajes: $message');
                       //si el residuo es 0, es su mensaje, si no, es 0 es mío
                       //más fácil, si es par es su mensaje, si no, es mío
                       //return (index % 2 == 0)
                       return (message.fromWho == FromWho.his)
-                      ? const HisMessageBubble()
+                      ? HisMessageBubble(message: message)
                       : MyMessageBubble(message: message);
                     },) //tener lista de elementos que se van a construir apenas/ya hayan/estén en pantalla, los demás elementos desaparecen
                 ),
