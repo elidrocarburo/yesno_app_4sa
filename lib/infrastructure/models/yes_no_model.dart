@@ -1,5 +1,7 @@
 //punto intermedio antes de comunicarse con la aplicación
 
+import 'dart:math';
+
 import 'package:yesno_app_4sa/domain/entities/message.dart';
 
 class YesNoModel {
@@ -21,15 +23,43 @@ class YesNoModel {
         image: json["image"],
     );
 
-    Message toMessageEntity() => Message(
+    Message toMessageEntity() {
+  final responses = [
+    Message(
       text: answer == 'yes' 
-      ? 'Sí'
-      : answer == 'no'
-        ? 'No'
-        : 'Tal vez',
+      ? 'Por supuesto' 
+      : answer == 'no' 
+        ? 'Negativo' 
+        : 'Quizás',
       fromWho: FromWho.his,
-      imageUrl: image
-    );
-    
-  
+      imageUrl: image,
+      time: DateTime.now()
+    ),
+    Message(
+      text: answer == 'yes' 
+      ? 'Claro' 
+      : answer == 'no' 
+        ? 'Para nada' 
+        : 'Posiblemente',
+      fromWho: FromWho.his,
+      imageUrl: image,
+      time: DateTime.now()
+    ),
+    Message(
+      text: answer == 'yes'  
+        ? 'Claro que sí' 
+        : answer == 'no' 
+          ? 'No creo' 
+          : 'Quizás',
+      fromWho: FromWho.his,
+      imageUrl: image,
+      time: DateTime.now()
+    ),
+  ];
+
+  //con la clase math del mismo dart, elegirá una de las respuestas al azar con la función Random
+  //donde el índice serán las respuestas y las irá soltando de manera aleatoria
+  final randomIndex = Random().nextInt(responses.length);
+  return responses[randomIndex];
+}
 }
